@@ -1,0 +1,70 @@
+extends ../layout/base 
+block content 
+	section.content-header 
+		h1 
+			| Edit Product
+			small menu for editing data baju
+		ol.breadcrumb 
+			li 
+				a(href='#') 
+					i.fa.fa-dashboard
+					| Lainnya  
+			li.active Here 
+	section.content
+		.box
+			.box-header.with-border
+				h3.box-title
+					| Product
+				.box-tools.pull-right
+					button(type='button', data-widget='collapse', data-toggle='tooltip',title='collapse').btn.btn-box-tool
+						i.fa.fa-minus
+					
+			.box-body
+				form(role='form',method='post' action='/products/edit/#{(id==undefined) ? data.id : id}' enctype='multipart/form-data')
+					.row
+						
+						.col-xs-6
+							.box-body
+								- if (messages.msg_error) 
+									.alert.alert-danger.alert-dismissable 
+										button.close(type='button', data-dismiss='alert', aria-hidden='true') 
+											| ×
+										h4
+											i.icon.fa.fa-ban
+											| Alert! 
+										| !{messages.msg_error}
+								- if (messages.msg_info) 
+									.alert.alert-success.alert-dismissable 
+										button.close(type='button', data-dismiss='alert', aria-hidden='true') 
+											| ×
+										h4
+											i.icon.fa.fa-check
+											| Success! 
+										| !{messages.msg_info}
+								.form-group
+									label
+										| Gambar
+									input(type='file',name='gambar').form-control
+								.form-group
+									label
+										| Kode
+									input(type='text',value="#{ (kode == undefined)? data.kode : kode}",name='kode',placeholder='Masukkan kode', autofocus).form-control
+								.form-group
+									label
+										| Baju
+									input(type='text',value="#{ (baju == undefined) ? data.baju : baju }",name='baju',placeholder='Masukkan baju').form-control
+								.form-group
+									label
+										| Stok
+									input(type='text',value="#{ (stok == undefined) ? data.stok : stok }",name='stok',placeholder='Masukkan stok').form-control
+								.form-group
+									label
+										| Harga
+									input(type='text',value="#{ (harga == undefined) ? data.harga : harga }",name='harga',placeholder='Masukkan Harga').form-control
+							.box-footer
+								input(type="hidden",name="_method", value="PUT")
+								button(type='submit').btn.btn-primary
+									i.fa.fa-pencil 
+									|  Edit
+								a(href='/products').btn.btn-primary.pull-right
+									| Back
