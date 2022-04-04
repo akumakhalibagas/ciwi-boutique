@@ -5,7 +5,7 @@ var modul = require('../modul/modul');
 var session_store;
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	res.redirect('/product');
+	res.redirect('/products');
 });
 router.get('/register',function(req,res,next){
 	res.render('main/register',{title:"Register Page"});
